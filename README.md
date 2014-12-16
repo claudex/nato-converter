@@ -3,7 +3,7 @@
 Convert list of character to the equivalent in NATO alphabet. And it takes care
 of the capitals:
 
-	$ ./nato_converter.py abc
+	$ ./nato_converter.py aBc
 	aBc: alpha BRAVO charlie
 
 This is useful to give password orally and avoid confusion:
