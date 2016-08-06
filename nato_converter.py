@@ -30,7 +30,17 @@ table = {
     "w": "whiskey",
     "x": "x-ray",
     "y": "yankee",
-    "z": "zulu"
+    "z": "zulu",
+    "0": "Nadazero",
+    "1": "Unaone",
+    "2": "Bissotwo",
+    "3": "Terrathree",
+    "4": "Kartefour",
+    "5": "Pantafive",
+    "6": "Soxisix",
+    "7": "Setteseven",
+    "8": "Oktoeight",
+    "9": "Novenine"
     }
 
 class IllegalStringSize(Exception):
