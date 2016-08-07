@@ -20,8 +20,10 @@ class TestFindInTable(unittest.TestCase):
         self.assertRaises(nato_converter.IllegalStringSize,
                 nato_converter.find_in_table, "aa")
 
+    def test_find_digit(self):
+        self.assertEqual("Unaone", nato_converter.find_in_table("1"))
+
     def test_find_special_char(self):
-        self.assertEqual("1", nato_converter.find_in_table("1"))
         self.assertEqual(u"é", nato_converter.find_in_table(u"é"))
 
 if __name__ == '__main__':
