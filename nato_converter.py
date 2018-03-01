@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import argparse
 import sys
 
 
-table = {
+table_default = {
     "a": "alpha",
     "b": "bravo",
     "c": "charlie",
@@ -43,11 +44,39 @@ table = {
     "9": "Novenine"
     }
 
+table_elephant = {
+    "a": "animal",
+    "b": "babar",
+    "c": "cornac",
+    "d": "défense",
+    "e": "éléphant",
+    "f": "forêt",
+    "g": "gris",
+    "h": "harde",
+    "i": "ivoire",
+    "j": "Jérakine",
+    "k": "Kamba",
+    "l": "longévité",
+    "m": "mémoire",
+    "n": "nuifs",
+    "o": "oreilles",
+    "p": "pachyderme",
+    "q": "queue",
+    "r": "roi",
+    "s": "souris",
+    "t": "trompe",
+    "u": "unknown",
+    "v": "voltage",
+    "x": "léon X",
+    "y": "yazdgard",
+    "z": "zoo",
+    }
+
 class IllegalStringSize(Exception):
     def __init__(self, msg):
         super(Exception, self).__init__(msg)
 
-def find_in_table(letter):
+def find_in_table(letter, table):
     if len(letter) != 1:
         raise IllegalStringSize(
             "The letter parameter should only contains one character")
@@ -62,30 +91,37 @@ def find_in_table(letter):
         res = letter
     return res
 
-def convert(orig):
+def convert(orig, table):
     result = ""
     for letter in orig:
-        res = find_in_table(letter)
+        res = find_in_table(letter, table)
         if result:
             result = "%s %s" % (result, res)
         else:
             result = res
     return result
 
-if __name__ == '__main__':
-    orig = ""
-    if len(sys.argv) > 1:
-        for arg in sys.argv[1:]:
-            orig = orig + arg
-    elif not sys.stdin.isatty():
-        for arg in sys.stdin.readlines():
-            orig = orig + arg
-    if orig:
-        orig = orig.replace("\n", " ")
-        result = convert(orig)
 
-        print "%s: %s" % (orig, result)
+def main():
+    parser = argparse.ArgumentParser(prog='nato_converter', usage='%(prog)s [options]')
+    parser.add_argument("-e", "--elephant", action="store_true", help="Activate elephant mode")
+    parser.add_argument('passwords', type=str, nargs='+',
+                        help='the string to convert')
+    #TODO parse stdin
+    args = parser.parse_args()
+    passwords = args.passwords
+    orig = ", ".join(passwords)
+    orig = orig.replace("\n", " ")
+    if args.elephant:
+        table = table_elephant
     else:
-        print "usage"
+        table = table_default
+    result = convert(orig, table)
+
+    print("%s: %s"% (orig, result))
+
+
+if __name__ == '__main__':
+    main()
 
 # vim: set ts=4 sw=4 expandtab:
