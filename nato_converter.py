@@ -39,20 +39,23 @@ table = {
     "6": "Soxisix",
     "7": "Setteseven",
     "8": "Oktoeight",
-    "9": "Novenine"
-    }
+    "9": "Novenine",
+}
+
 
 class IllegalStringSize(Exception):
     def __init__(self, msg):
         super(Exception, self).__init__(msg)
 
+
 def find_in_table(letter):
     if len(letter) != 1:
         raise IllegalStringSize(
-            "The letter parameter should only contains one character")
+            "The letter parameter should only contains one character"
+        )
 
     if letter in table:
-        res =  table[letter]
+        res = table[letter]
     elif letter.lower() in table:
         res = table[letter.lower()].upper()
     elif not letter or letter.isspace():
@@ -60,6 +63,7 @@ def find_in_table(letter):
     else:
         res = letter
     return res
+
 
 def convert(orig):
     result = ""
@@ -70,6 +74,7 @@ def convert(orig):
         else:
             result = res
     return result
+
 
 if __name__ == '__main__':
     orig = ""
