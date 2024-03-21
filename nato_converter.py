@@ -3,7 +3,6 @@
 
 import sys
 
-
 table = {
     "a": "alpha",
     "b": "bravo",
@@ -84,8 +83,8 @@ if __name__ == '__main__':
         orig = orig.replace("\n", " ")
         result = convert(orig)
 
-        print "%s: %s" % (orig, result)
+        print(f'{orig}:{result}')
     else:
-        print "usage"
+        print("usage")
 
 # vim: set ts=4 sw=4 expandtab:
